@@ -1,3 +1,3 @@
 # sazeguro.github.io
 
-github homepage test
+This is just testing for github pages.
