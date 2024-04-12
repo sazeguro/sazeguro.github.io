@@ -1,7 +1,7 @@
 ---
-title: ★ 알아두면 좋은 유용한 링크, 툴 모음
-author: Rito15
-date: 2023-05-21 18:34:00 +09:00
+title: 게시글 첫번째 테스트
+author: sazeguro
+date: 2024-04-12 16:50:00 +09:00
 categories: [Memo]
 tags: [memo, useful]
 math: false
@@ -10,3 +10,4 @@ pin: true
 ---
 
 게시글 테스트
+그냥 이글에꺼 raw 보기해서 같다 부치고 적당히 맞게 글쓰면 홈페이지에 나온다.
