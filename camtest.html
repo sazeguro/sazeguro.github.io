@@ -1,39 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Html-Qrcode Demo</title>
+    <meta charset="UTF-8">
+    <title>Camera Test</title>
+</head>
 <body>
-    <div id="qr-reader" style="width:500px"></div>
-    <div id="qr-reader-results"></div>
-</body>
-  <script src="https://unpkg.com/html5-qrcode"></script>
-<script>
-    function docReady(fn) {
-        // see if DOM is already available
-        if (document.readyState === "complete"
-            || document.readyState === "interactive") {
-            // call on next available tick
-            setTimeout(fn, 1);
-        } else {
-            document.addEventListener("DOMContentLoaded", fn);
-        }
+    <video id="cameraview" width="720" height="480"></video>
+    <script>
+      // Init camera
+function camInit(stream) {
+    var cameraView = document.getElementById("cameraview");
+    cameraView.srcObject = stream;
+    cameraView.play();
+}
+
+function camInitFailed(error) {
+    console.log("get camera permission failed : ", error)
+}
+
+// Main init
+
+function mainInit() {
+    // Check navigator media device available
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia )
+    {
+        // Navigator mediaDevices not supported
+        alert("Media Device not supported")
+        return;
     }
 
-    docReady(function () {
-        var resultContainer = document.getElementById('qr-reader-results');
-        var lastResult, countResults = 0;
-        function onScanSuccess(decodedText, decodedResult) {
-            if (decodedText !== lastResult) {
-                ++countResults;
-                lastResult = decodedText;
-                // Handle on success condition with the decoded message.
-                console.log(`Scan result ${decodedText}`, decodedResult);
-            }
-        }
+    navigator.mediaDevices.getUserMedia({video:true})
+        .then(camInit)
+        .catch(camInitFailed);
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess);
-    });
-</script>
-</head>
+}
+
+        mainInit();
+    </script>
+</body>
 </html>
